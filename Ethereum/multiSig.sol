@@ -55,7 +55,8 @@ contract Wallet {
     //Need to update the mapping to record the approval for the msg.sender.
     //When the amount of approvals for a transfer has reached the limit, this function should send the transfer to the recipient.
     //An owner should not be able to vote twice.
-    //An owner should not be able to vote on a tranfer request that has already been sent.
+    //An owner should not be able to vote on a transfer request that has already been sent.
+    
     function approve(uint _id) public onlyOwners {
         require(approvals[msg.sender][_id] == false);
         require(transferRequests[_id].hasBeenSent == false);
@@ -71,7 +72,7 @@ contract Wallet {
             emit TransferApproved(_id);
         }
     }
-    
+     
     //Should return all transfer requests
     function getTransferRequests() public view returns (Transfer[] memory){
         return transferRequests;
